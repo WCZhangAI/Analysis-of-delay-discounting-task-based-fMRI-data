@@ -26,7 +26,7 @@ for i = 1 : nsub
     subnum = subfile{1};   % Sub number
     tp_info = DDT_TP_all.(subnum);    
     num = str2num(subnum(4:end));
-    TP = str2num(subfile{2}(1));  % 1: Pre£¬ 2: Post1
+    TP = str2num(subfile{2}(1));  % 1: PreÂ£Â¬ 2: Post1
     temp = strcat('TP', num2str(num), '_', num2str(TP));
     tp_info = tp_info.(temp);
     subfile = regexp(workpath_list(i+2).name, '_', 'split');
@@ -69,14 +69,6 @@ for i = 1 : nsub
     matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).duration = 2;
     matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).tmod = 0;
     matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).pmod = struct('name', {}, 'param', {}, 'poly', {});
-    %%
-    if length(tp_info.miss_trial) > 0
-        matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).name = 'miss';
-        matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).onset = Ans_TP_all(tp_info.miss_trial);
-        matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).duration = 4;
-        matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).tmod = 0;
-        matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod = struct('name', {}, 'param', {}, 'poly', {});
-    end
     %%
     matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
     matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
